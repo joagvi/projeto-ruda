@@ -6,9 +6,11 @@
 
   /* cores */
   --background-color: #F1ECE6;
+  --background-color-alt: #ece6e6;
   --first-color: #A0CAE0;
   --second-color: #E8AAD1;
   --hover-background-color: #F3D8E4;
+  --form-color: #ECE1E1;
   --hover-color: #BD659D;
   --text-color: #373059;
 
@@ -45,6 +47,10 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--background-color);
   color: var(--text-color);
+}
+
+main {
+  padding-top: calc(var(--header-height) + 2rem);
 }
 
 ul {
@@ -88,9 +94,22 @@ a {
   height: 100%;
 }
 
+.nav__actions {
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+}
+
 .nav__toggle {
   position: relative;
   width: 32px;
+  height: 32px;
+}
+
+.nav__search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 32px;
 }
 
@@ -106,10 +125,15 @@ a {
   transition: opacity 0.1s, transform 0.4s;
 }
 
+.nav__search-icon {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
 .nav__toggle-close {
   opacity: 0;
 }
-
 
 /* navegação para dispositivos móveis */
 @media screen and (max-width: 1118px) {
@@ -125,6 +149,10 @@ a {
     pointer-events: none;
     opacity: 0;
     transition: top .4s, opacity .3s;
+  }
+
+  .nav__search-desktop {
+    display: none;
   }
 
   .nav__menu::webkit-scrollbar {
@@ -264,9 +292,154 @@ a {
   transform: rotate(180deg);
 }
 
+/* search */
+.search_input {
+  position: absolute;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  background-color: var(--background-color);
+  padding: 1rem 1.5rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: var(--z-fixed);
+}
+
+.search_input.show-search {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* campo de busca */
+.search_input__field {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  padding-left: 2rem;
+  font-size: 1rem;
+  font-family: var(--body-font);
+  background-color: var(--background-color);
+  border: 1px solid var(--text-color);
+}
+
+.search_input__field:focus {
+  outline: none;
+  border: 1px solid var(--text-color);
+}
+
+/* ícone dentro da caixa */
+.search_input-icon {
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: var(--text-color);
+  pointer-events: none;
+}
+
+/* ===== PAGINA CONTATO - FORMULARIO =====*/
+.form__box {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__text {
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+  width: 55%;
+}
+
+.form__text h2 {
+  margin-bottom: 0.75rem;
+}
+
+.title__form {
+  font-weight: var(--font-bold);
+}
+
+.form__box-container {
+  padding-inline: 70px;
+}
+
+.form__input {
+  background-color: var(--background-color-alt);
+  padding: 60px;
+  border-radius: 50px;
+  border: 1px solid #f0dddd;
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+}
+
+.form__input form {
+  max-width: 800px; /* largura máxima do formulário */
+  width: 100%;       /* ocupa tudo dentro do limite */
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 22px;
+}
+
+.form__box input {
+  height: 48px;
+  border-radius: 10px;
+  padding-left: 0.5rem;
+  border: 1px solid #ddaec2;
+  font-family: var(--body-font);
+}
+
+.form__box input[name="email"],
+.form__box input[name="subject"],
+.form__box input[name="pronomes"],
+.form__box textarea {
+  width: 100%;
+}
+
+.form__box input[name="first-name"],
+.form__box input[name="second-name"],
+.form__box input[name="subject"],
+.form__box input[name="pronomes"] {
+  width: calc(50% - 10px);
+}
+
+.form__box textarea {
+  height: 150px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 1px solid #ddaec2;
+  resize: vertical;
+  font-family: var(--body-font);
+}
+
+.form__input button {
+  padding: 0.75rem 2rem;
+  background-color: var(--first-color); /* cor principal */
+  color: white;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  font-family: var(--body-font);
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Ajuste opcional no botão */
+.form__input button {
+  margin-top: 1rem;
+  padding: 12px 24px;
+  border: none;
+  background-color: var(--first-color);
+  color: white;
+  font-weight: var(--font-medium);
+  border-radius: 8px;
+  cursor: pointer;
+}
 /* breakpoints */
 /* para dispositivos pequenos */
-@media scrren and (max-width: 300px) {
+@media screen and (max-width: 300px) {
   .dropdown__group {
     padding-left: 1.5rem;
   }
@@ -281,12 +454,13 @@ a {
     justify-content: space-between;
   }
 
-  .nav__toggle {
+  .nav__actions{
     display: none;
   }
 
   .nav__list {
     display: flex;
+    align-items: center;
     column-gap: 3rem;
     height: 100%;
   }
@@ -302,6 +476,11 @@ a {
   .nav__link:hover {
     background-color: transparent;
     color: var(--body-font);
+  }
+
+  .nav__search-icon {
+    font-size: 1rem;
+    font-weight: var(--font-semi-bold);
   }
 
   /* dropdown */
@@ -363,6 +542,21 @@ a {
     top: 8.5rem;
     pointer-events: initial;
   }
+
+  .search_input {
+    top: calc(var(--header-height) + 1.5rem);
+    padding-inline: 20%;
+  }
+
+  .search_input-icon {
+  position: absolute;
+  left: 20.6%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: var(--text-color);
+  pointer-events: none;
+}
 }
 
 @media screen and (min-width: 1152px) {

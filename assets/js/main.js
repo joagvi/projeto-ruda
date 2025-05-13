@@ -1,14 +1,16 @@
 /*=============== MOSTRAR MENU (MOBILE) ===============*/
 const showMenu = (toggleId, navId) => {
   const toggle = document.getElementById(toggleId),
-        nav = document.getElementById(navId)
+        nav = document.getElementById(navId),
+        searchInput = document.querySelector(".search_input");
 
   toggle.addEventListener('click', () => {
-    // Alterna a classe 'show-menu' para mostrar/ocultar o menu
-    nav.classList.toggle('show-menu')
+    // Fechar busca se estiver aberta
+    searchInput.classList.remove("show-search");
 
-    // Alterna o ícone de abrir/fechar menu
-    toggle.classList.toggle('show-icon')
+    // Alternar visibilidade do menu
+    nav.classList.toggle('show-menu');
+    toggle.classList.toggle('show-icon');
   })
 }
 
@@ -92,3 +94,23 @@ dropdownGroups.forEach((group) => {
     }, 300)
   })
 })
+
+/*=============== SEARCH ===============*/
+document.addEventListener("DOMContentLoaded", () => {
+  const searchIcons = document.querySelectorAll(".nav__search-icon");
+  const searchInput = document.querySelector(".search_input");
+  const navMenu = document.getElementById("nav-menu");
+  const navToggle = document.getElementById("nav-toggle");
+  const navData = document.querySelector(".nav__data");
+
+  searchIcons.forEach(icon => {
+    icon.addEventListener("click", () => {
+      // Fecha o menu se estiver aberto
+      navMenu.classList.remove("show-menu");
+      navToggle.classList.remove("show-icon");
+
+      // Alterna a visibilidade do campo de busca
+      searchInput.classList.toggle("show-search");
+    });
+  });
+});
