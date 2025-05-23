@@ -227,19 +227,25 @@
                 <div class="form__box">
                     <div class="form__text">
                         <h2 class="title__form">Entre em contato</h2>
-                        <p>Entre em contato através do nosso e-mail projetoruda@gmail.com ou, se preferir, preencha o formulário abaixo.</p>
+                        <p>Entre em contato através do nosso e-mail contato@projetoruda.org ou, se preferir, preencha o formulário abaixo.</p>
                     </div>
                     
                     <div class="form__box-container">
                         <div class="form__input">
-                            <form action="" method="get">
-                                <input type="text" name="first-name" placeholder="Nome">
-                                <input type="text" name="second-name" placeholder="Sobrenome">
-                                <input type="text" name="email" placeholder="E-mail">
-                                <input type="text" name="subject" placeholder="Assunto">
-                                <input type="text" name="pronomes" placeholder="Pronomes">
+                            <form action="" method="get" id="form-contato">
+                                <input type="text" name="first-name" placeholder="Nome" required>
+                                <input type="text" name="second-name" placeholder="Sobrenome" required>
+                                <input type="email" name="email" placeholder="E-mail" required>
+                                <input type="text" name="subject" placeholder="Assunto" required>
+                                <select name="pronomes" required>
+                                    <option value="" disabled selected hidden>Pronomes</option>
+                                    <option value="ela/dela">Ela/Dela</option>
+                                    <option value="ele/dele">Ele/Dele</option>
+                                    <option value="elu/dele">Elu/Dele</option>
+                                    <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+                                </select>
 
-                                <textarea name="message" placeholder="Mensagem"></textarea>
+                                <textarea name="message" placeholder="Mensagem" required></textarea>
 
                                 <button type="submit">Enviar</button>
                             </form>
@@ -248,7 +254,110 @@
                 </div>
             </div>
         </main>
+
+        <footer class="footer">
+            <div class="footer__container container">
+                <div class="footer__content">
+                    <!-- logo e descrição -->
+                    <div class="footer__about">
+                        <a href="#" class="footer__logo">
+                            <img src="assets/img/logo.svg" alt="Projeto Rudá">
+                        </a>                       
+                    </div>
+                    
+                    <!-- links rápidos -->
+                    <div class="footer__links">
+                        <h3 class="footer__title">Links Rápidos</h3>
+                        <ul class="footer__list">
+                            <li><a href="#" class="footer__link">Sobre o projeto</a></li>
+                            <li><a href="contato.html" class="footer__link">Contato</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- informativos -->
+                    <div class="footer__links">
+                        <h3 class="footer__title">Informativos</h3>
+                        <ul class="footer__list">
+                            <li><a href="#" class="footer__link">Prevenção ao HIV</a></li>
+                            <li><a href="#" class="footer__link">Terapia Hormonal</a></li>
+                            <li><a href="#" class="footer__link">Saúde Mental</a></li>
+                            <li><a href="#" class="footer__link">Retificação de Documentos</a></li>
+                            <li><a href="#" class="footer__link">Locais de Apoio</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- contato -->
+                    <div class="footer__contact">
+                        <h3 class="footer__title">Contato</h3>
+                        <ul class="footer__list">
+                            <li class="footer__contact-item">
+                                <a href="mailto:contato@projetoruda.org">contato@projetoruda.org</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+
+        <div class="success__message hidden" id="success-message">
+            Mensagem enviada com sucesso!
+        </div>
+
         <!-- main js -->
         <script src="assets/js/main.js"></script>
+
+        <script src="assets/js/main.js"></script>
+
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+            import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBo_HZaCGGub7MY6JGtJdqGGQCzAbacUFE",
+                authDomain: "projeto-ruda-8a04e.firebaseapp.com",
+                projectId: "projeto-ruda-8a04e",
+                storageBucket: "projeto-ruda-8a04e.appspot.com", // <- corrigido
+                messagingSenderId: "1048784578204",
+                appId: "1:1048784578204:web:6c26eb73e49959250eaf59",
+                measurementId: "G-Y8BXXBPF02",
+                databaseURL: "https://projeto-ruda-8a04e-default-rtdb.firebaseio.com/" // <- ESSENCIAL
+            };
+
+            const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
+
+            const form = document.getElementById("form-contato");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                const data = {
+                nome: document.getElementById("first-name").value,
+                sobrenome: document.getElementById("second-name").value,
+                email: document.getElementById("email").value,
+                assunto: document.getElementById("subject").value,
+                pronomes: document.getElementById("pronomes").value,
+                mensagem: document.getElementById("message").value,
+                timestamp: new Date().toISOString()
+                };
+
+                push(ref(database, "mensagensContato/"), data)
+                .then(() => {
+                        const successMessage = document.getElementById("success-message");
+                        successMessage.classList.remove("hidden");
+                        successMessage.classList.add("show");
+
+                        setTimeout(() => {
+                        successMessage.classList.remove("show");
+                        successMessage.classList.add("hidden");
+            }, 3000); // esconde após 3 segundos
+
+                    form.reset();
+                })
+                .catch((error) => {
+                    console.error("Erro ao enviar:", error);
+                    alert("Erro ao enviar a mensagem.");
+                });
+            });
+        </script>
     </body>
 </html>

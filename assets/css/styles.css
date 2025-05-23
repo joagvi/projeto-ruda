@@ -345,10 +345,11 @@ a {
 .form__box {
   display: flex;
   flex-direction: column;
+  padding-top: 6rem;
+  padding-bottom: 10rem;
 }
 
 .form__text {
-  padding-top: 5rem;
   padding-bottom: 3rem;
   width: 55%;
 }
@@ -379,8 +380,8 @@ a {
   width: 100%;       
   display: flex;
   flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 22px;
+  column-gap: 15px;
+  row-gap: 20px;
 }
 
 .form__box input {
@@ -391,18 +392,34 @@ a {
   font-family: var(--body-font);
 }
 
+.form__box select {
+  height: 48px;
+  border-radius: 10px;
+  padding-left: 0.5rem;
+  padding-right: 2.5rem; 
+  border: 1px solid #ddaec2;
+  font-family: var(--body-font);
+  color: #757575;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 .form__box input[name="email"],
-.form__box input[name="subject"],
-.form__box input[name="pronomes"],
 .form__box textarea {
   width: 100%;
 }
 
 .form__box input[name="first-name"],
-.form__box input[name="second-name"],
-.form__box input[name="subject"],
-.form__box input[name="pronomes"] {
-  width: calc(50% - 10px);
+.form__box input[name="second-name"] {
+  width: calc(50% - 8px);
+}
+
+.form__box input[name="subject"] {
+  width: 72%;
+}
+
+.form__box select[name="pronomes"] {
+  width: 25.5%;
 }
 
 .form__box textarea {
@@ -415,29 +432,52 @@ a {
 }
 
 .form__input button {
+  margin-top: 1rem;
   padding: 0.75rem 2rem;
-  background-color: var(--first-color); /* cor principal */
-  color: white;
+  background-color: var(--first-color);
+  color: var(--background-color);
   font-size: var(--smaller-font-size);
-  font-weight: var(--font-semi-bold);
+  font-weight: var(--font-medium);
   font-family: var(--body-font);
   text-transform: uppercase;
-  border: none;
+  border: 1px solid transparent;           
   border-radius: 8px;
   cursor: pointer;
+  transition: border-color 0.2s ease;       
 }
 
-/* Ajuste opcional no botão */
-.form__input button {
-  margin-top: 1rem;
-  padding: 12px 24px;
-  border: none;
-  background-color: var(--first-color);
-  color: white;
-  font-weight: var(--font-medium);
-  border-radius: 8px;
-  cursor: pointer;
+.form__input button:hover {
+  border-color: #77A2B9;    
 }
+
+/* mensagem confirmação de envio */
+.success__message {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #D8EFD3;
+  color: #55AD9B;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-size: var(--smaller-font-size);
+  font-family: var(--body-font);
+  font-weight: var(--font-semi-bold);
+  border: 1px solid #95D2B3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.success__message.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.success__message.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 /* main */
 /* hero */
