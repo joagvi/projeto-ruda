@@ -90,36 +90,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-/* form */
-/* validação formulario */
-document.querySelector("#form-contato").addEventListener("submit", function(e) {
-  e.preventDefault(); 
-
-  const fields = this.querySelectorAll("[required]");
-  let valid = true;
-
-  fields.forEach(field => {
-    field.style.borderColor = "#ddaec2";
-    if (!field.value) {
-      valid = false;
-      field.style.borderColor = "#e57373";
-    }
-  });
-
-  if (!valid) {
-    alert("Por favor, preencha todos os campos obrigatórios.");
-    return;
-  }
-
-  const msg = document.getElementById("success-message");
-  msg.classList.remove("hidden");
-  msg.classList.add("show");
-
-  this.reset();
-
-  setTimeout(() => {
-    msg.classList.remove("show");
-    msg.classList.add("hidden");
-  }, 4000);
-});

@@ -233,11 +233,12 @@
                     <div class="form__box-container">
                         <div class="form__input">
                             <form action="" method="get" id="form-contato">
-                                <input type="text" name="first-name" placeholder="Nome" required>
-                                <input type="text" name="second-name" placeholder="Sobrenome" required>
-                                <input type="email" name="email" placeholder="E-mail" required>
-                                <input type="text" name="subject" placeholder="Assunto" required>
-                                <select name="pronomes" required>
+                                <input type="text" id="first-name" name="first-name" placeholder="Nome" required>
+                                <input type="text" id="second-name" name="second-name" placeholder="Sobrenome" required>
+                                <input type="email" id="email" name="email" placeholder="E-mail" required>
+                                <input type="text" id="subject" name="subject" placeholder="Assunto" required>
+
+                                <select id="pronomes" name="pronomes" required>
                                     <option value="" disabled selected hidden>Pronomes</option>
                                     <option value="ela/dela">Ela/Dela</option>
                                     <option value="ele/dele">Ele/Dele</option>
@@ -245,7 +246,7 @@
                                     <option value="prefiro-nao-dizer">Prefiro não dizer</option>
                                 </select>
 
-                                <textarea name="message" placeholder="Mensagem" required></textarea>
+                                <textarea id="message" name="message" placeholder="Mensagem" required></textarea>
 
                                 <button type="submit">Enviar</button>
                             </form>
@@ -302,62 +303,8 @@
             Mensagem enviada com sucesso!
         </div>
 
-        <!-- main js -->
+        <!-- js -->
         <script src="assets/js/main.js"></script>
-
-        <script src="assets/js/main.js"></script>
-
-        <script type="module">
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-            import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
-
-            const firebaseConfig = {
-                apiKey: "AIzaSyBo_HZaCGGub7MY6JGtJdqGGQCzAbacUFE",
-                authDomain: "projeto-ruda-8a04e.firebaseapp.com",
-                projectId: "projeto-ruda-8a04e",
-                storageBucket: "projeto-ruda-8a04e.appspot.com", // <- corrigido
-                messagingSenderId: "1048784578204",
-                appId: "1:1048784578204:web:6c26eb73e49959250eaf59",
-                measurementId: "G-Y8BXXBPF02",
-                databaseURL: "https://projeto-ruda-8a04e-default-rtdb.firebaseio.com/" // <- ESSENCIAL
-            };
-
-            const app = initializeApp(firebaseConfig);
-            const database = getDatabase(app);
-
-            const form = document.getElementById("form-contato");
-
-            form.addEventListener("submit", (e) => {
-                e.preventDefault();
-
-                const data = {
-                nome: document.getElementById("first-name").value,
-                sobrenome: document.getElementById("second-name").value,
-                email: document.getElementById("email").value,
-                assunto: document.getElementById("subject").value,
-                pronomes: document.getElementById("pronomes").value,
-                mensagem: document.getElementById("message").value,
-                timestamp: new Date().toISOString()
-                };
-
-                push(ref(database, "mensagensContato/"), data)
-                .then(() => {
-                        const successMessage = document.getElementById("success-message");
-                        successMessage.classList.remove("hidden");
-                        successMessage.classList.add("show");
-
-                        setTimeout(() => {
-                        successMessage.classList.remove("show");
-                        successMessage.classList.add("hidden");
-            }, 3000); // esconde após 3 segundos
-
-                    form.reset();
-                })
-                .catch((error) => {
-                    console.error("Erro ao enviar:", error);
-                    alert("Erro ao enviar a mensagem.");
-                });
-            });
-        </script>
+        <script type="module" src="assets/js/firebase.js"></script>
     </body>
 </html>
