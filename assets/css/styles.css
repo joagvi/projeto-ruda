@@ -345,16 +345,16 @@ a {
 .form__box {
   display: flex;
   flex-direction: column;
-  padding-top: 6rem;
-  padding-bottom: 10rem;
+  padding-block: 6rem;
 }
 
 .form__text {
   padding-bottom: 3rem;
-  width: 55%;
+  width: 100%;
 }
 
 .form__text h2 {
+  font-size: var(--h2-font-size);
   margin-bottom: 0.75rem;
 }
 
@@ -362,21 +362,16 @@ a {
   font-weight: var(--font-bold);
 }
 
-.form__box-container {
-  padding-inline: 70px;
-}
-
 .form__input {
   background-color: var(--background-color-alt);
-  padding: 60px;
+  padding: 2rem;
   border-radius: 50px;
   border: 1px solid #f0dddd;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .form__input form {
-  max-width: 800px;
   width: 100%;       
   display: flex;
   flex-wrap: wrap;
@@ -415,11 +410,11 @@ a {
 }
 
 .form__box input[name="subject"] {
-  width: 72%;
+  width: calc(68% - 7.5px);
 }
 
 .form__box select[name="pronomes"] {
-  width: 25.5%;
+  width: calc(32% - 7.5px);
 }
 
 .form__box textarea {
@@ -432,16 +427,16 @@ a {
 }
 
 .form__input button {
-  margin-top: 1rem;
-  padding: 0.75rem 2rem;
+  margin-left: 0.rem;
+  padding: 0.75rem 3rem;
   background-color: var(--first-color);
   color: var(--background-color);
-  font-size: var(--smaller-font-size);
+  font-size: var(--small-font-size);
   font-weight: var(--font-medium);
   font-family: var(--body-font);
   text-transform: uppercase;
   border: 1px solid transparent;           
-  border-radius: 8px;
+  border-radius: 20px;
   cursor: pointer;
   transition: border-color 0.2s ease;       
 }
@@ -524,13 +519,6 @@ a {
   background-color: var(--second-color);
   outline: none;
   border: none;
-}
-
-.hero__buttons button:last-child {
-  color: var(--first-color);
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--first-color);
 }
 
 /* cards */
@@ -730,6 +718,29 @@ a {
     font-size: 0.9rem;
     color: var(--text-color);
     font-weight: var(--font-medium);
+}
+
+/* --- pagina sobre --- */
+.about {
+  display: flex;
+  padding-top: 6rem;
+  padding-bottom: 10rem;
+  gap: 1rem;
+}
+
+.about__title {
+  font-weight: var(--font-bold);
+  font-size: var(--h2-font-size);
+  padding-bottom: 0.75rem;
+}
+
+.about__description {
+  line-height: 1.8;
+}
+
+.about__description span {
+  background-color: #FFD0E6;
+  font-weight: var(--font-medium);
 }
 /* breakpoints */
 /* para dispositivos pequenos */
