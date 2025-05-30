@@ -5,38 +5,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function includeHTML(id, file, callback) {
   fetch(file)
-    .then(res => res.text())
-    .then(data => {
+    .then((res) => res.text())
+    .then((data) => {
       document.getElementById(id).innerHTML = data;
       if (callback) callback();
     })
-    .catch(err => console.error("Erro ao carregar " + file + ":", err));
+    .catch((err) => console.error("Erro ao carregar " + file + ":", err));
 }
 
 function initHeaderScripts() {
   /*=============== MOSTRAR MENU (MOBILE) ===============*/
   const showMenu = (toggleId, navId) => {
     const toggle = document.getElementById(toggleId),
-          nav = document.getElementById(navId),
-          searchInput = document.querySelector(".search_input");
+      nav = document.getElementById(navId),
+      searchInput = document.querySelector(".search_input");
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener("click", () => {
       searchInput.classList.remove("show-search");
-      nav.classList.toggle('show-menu');
-      toggle.classList.toggle('show-icon');
+      nav.classList.toggle("show-menu");
+      toggle.classList.toggle("show-icon");
     });
   };
 
-  showMenu('nav-toggle', 'nav-menu');
+  showMenu("nav-toggle", "nav-menu");
 
   /*=============== MOSTRAR DROPDOWN PRINCIPAL ===============*/
-  const dropdownItems = document.querySelectorAll('.dropdown__item');
+  const dropdownItems = document.querySelectorAll(".dropdown__item");
 
   dropdownItems.forEach((item) => {
-    const dropdownButton = item.querySelector('.dropdown__button');
+    const dropdownButton = item.querySelector(".dropdown__button");
 
-    dropdownButton.addEventListener('click', () => {
-      const showDropdown = document.querySelector('.dropdown__item.show-dropdown');
+    dropdownButton.addEventListener("click", () => {
+      const showDropdown = document.querySelector(".dropdown__item.show-dropdown");
 
       toggleItem(item);
 
@@ -47,45 +47,45 @@ function initHeaderScripts() {
   });
 
   const toggleItem = (item) => {
-    const dropdownContainer = item.querySelector('.dropdown__container');
+    const dropdownContainer = item.querySelector(".dropdown__container");
 
-    if (item.classList.contains('show-dropdown')) {
-      dropdownContainer.removeAttribute('style');
-      item.classList.remove('show-dropdown');
+    if (item.classList.contains("show-dropdown")) {
+      dropdownContainer.removeAttribute("style");
+      item.classList.remove("show-dropdown");
     } else {
-      dropdownContainer.style.height = dropdownContainer.scrollHeight + 'px';
-      item.classList.add('show-dropdown');
+      dropdownContainer.style.height = dropdownContainer.scrollHeight + "px";
+      item.classList.add("show-dropdown");
     }
   };
 
   /*=============== MOSTRAR SUB-DROPDOWN ===============*/
-  const dropdownGroups = document.querySelectorAll('.dropdown__group');
+  const dropdownGroups = document.querySelectorAll(".dropdown__group");
 
   dropdownGroups.forEach((group) => {
-    const groupButton = group.querySelector('.dropdown__group-button');
-    const groupList = group.querySelector('.dropdown__list');
+    const groupButton = group.querySelector(".dropdown__group-button");
+    const groupList = group.querySelector(".dropdown__list");
 
-    groupButton.addEventListener('click', () => {
-      const container = group.closest('.dropdown__container');
-      const isOpen = group.classList.contains('show-subdropdown');
+    groupButton.addEventListener("click", () => {
+      const container = group.closest(".dropdown__container");
+      const isOpen = group.classList.contains("show-subdropdown");
 
-      document.querySelectorAll('.dropdown__group.show-subdropdown').forEach((openGroup) => {
+      document.querySelectorAll(".dropdown__group.show-subdropdown").forEach((openGroup) => {
         if (openGroup !== group) {
-          openGroup.classList.remove('show-subdropdown');
-          openGroup.querySelector('.dropdown__list').removeAttribute('style');
+          openGroup.classList.remove("show-subdropdown");
+          openGroup.querySelector(".dropdown__list").removeAttribute("style");
         }
       });
 
       if (isOpen) {
-        group.classList.remove('show-subdropdown');
-        groupList.removeAttribute('style');
+        group.classList.remove("show-subdropdown");
+        groupList.removeAttribute("style");
       } else {
-        group.classList.add('show-subdropdown');
-        groupList.style.height = groupList.scrollHeight + 'px';
+        group.classList.add("show-subdropdown");
+        groupList.style.height = groupList.scrollHeight + "px";
       }
 
       setTimeout(() => {
-        container.style.height = container.scrollHeight + 'px';
+        container.style.height = container.scrollHeight + "px";
       }, 300);
     });
   });
@@ -96,7 +96,7 @@ function initHeaderScripts() {
   const navMenu = document.getElementById("nav-menu");
   const navToggle = document.getElementById("nav-toggle");
 
-  searchIcons.forEach(icon => {
+  searchIcons.forEach((icon) => {
     icon.addEventListener("click", () => {
       navMenu.classList.remove("show-menu");
       navToggle.classList.remove("show-icon");

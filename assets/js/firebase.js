@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: "projeto-ruda-8a04e",
   storageBucket: "projeto-ruda-8a04e.appspot.com",
   messagingSenderId: "1048784578204",
-  appId: "1:1048784578204:web:6c26eb73e49959250eaf59"
+  appId: "1:1048784578204:web:6c26eb73e49959250eaf59",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fields = form.querySelectorAll("[required]");
     let valid = true;
 
-    fields.forEach(field => {
+    fields.forEach((field) => {
       field.style.borderColor = "#ddaec2";
       if (!field.value) {
         valid = false;
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       assunto: document.getElementById("subject").value,
       pronomes: document.getElementById("pronomes").value,
       mensagem: document.getElementById("message").value,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     console.log("Enviando para Firebase:", data);
