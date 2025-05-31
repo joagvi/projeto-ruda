@@ -1,61 +1,62 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/styles.css">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
 
-        <title>Contato</title>
-    </head>
-    <body>
-        <!-- header -->
-        <div id="header"></div>
+    <title>Contato</title>
+  </head>
+  <body>
+    <!-- header -->
+    <div id="header"></div>
 
-        <!-- formulario -->
-         
-        <main>
-         <div class="form container">
-                <div class="form__box">
-                    <div class="form__text">
-                        <h2 class="title__form">Entre em contato</h2>
-                        <p>Entre em contato através do nosso e-mail contato@projetoruda.org ou, se preferir, preencha o formulário abaixo.</p>
-                    </div>
-                    
-                    <div class="form__box-container">
-                        <div class="form__input">
-                            <form action="" method="get" id="form-contato">
-                                <input type="text" id="first-name" name="first-name" placeholder="Nome" required>
-                                <input type="text" id="second-name" name="second-name" placeholder="Sobrenome" required>
-                                <input type="email" id="email" name="email" placeholder="E-mail" required>
-                                <input type="text" id="subject" name="subject" placeholder="Assunto" required>
-                                
-                                <select id="pronomes" name="pronomes" required>
-                                    <option value="" disabled selected hidden>Pronomes</option>
-                                    <option value="ela/dela">Ela/Dela</option>
-                                    <option value="ele/dele">Ele/Dele</option>
-                                    <option value="elu/dele">Elu/Dele</option>
-                                    <option value="prefiro-nao-dizer">Prefiro não dizer</option>
-                                </select>
+    <!-- formulario -->
 
-                                <textarea id="message" name="message" placeholder="Mensagem" required></textarea>
+    <main>
+      <div class="form container">
+        <div class="form__box">
+          <div class="form__text">
+            <h2 class="title__form">Entre em contato</h2>
+            <p>
+              Entre em contato através do nosso e-mail contato@projetoruda.org ou, se preferir, preencha o formulário
+              abaixo.
+            </p>
+          </div>
 
-                                <button type="submit">Enviar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+          <div class="form__box-container">
+            <div class="form__input">
+              <form action="" method="get" id="form-contato">
+                <input type="text" id="first-name" name="first-name" placeholder="Nome" required />
+                <input type="text" id="second-name" name="second-name" placeholder="Sobrenome" required />
+                <input type="email" id="email" name="email" placeholder="E-mail" required />
+                <input type="text" id="subject" name="subject" placeholder="Assunto" required />
+
+                <select id="pronomes" name="pronomes" required>
+                  <option value="" disabled selected hidden>Pronomes</option>
+                  <option value="ela/dela">Ela/Dela</option>
+                  <option value="ele/dele">Ele/Dele</option>
+                  <option value="elu/dele">Elu/Dele</option>
+                  <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+                </select>
+
+                <textarea id="message" name="message" placeholder="Mensagem" required></textarea>
+
+                <button type="submit">Enviar</button>
+              </form>
             </div>
-        </main>
-
-        <div id="footer"></div>
-
-        <div class="success__message hidden" id="success-message">
-            Mensagem enviada com sucesso!
+          </div>
         </div>
+      </div>
+    </main>
 
-        <!-- js -->
-        <script src="assets/js/main.js"></script>
-        <script type="module" src="assets/js/firebase.js"></script>
-    </body>
+    <div id="footer"></div>
+
+    <div class="success__message hidden" id="success-message">Mensagem enviada com sucesso!</div>
+
+    <!-- js -->
+    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/firebase.js"></script>
+  </body>
 </html>

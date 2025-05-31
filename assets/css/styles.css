@@ -77,6 +77,7 @@ a {
   top: 0;
   left: 0;
   width: 100%;
+  padding-top: env(safe-area-inset-top);
   background-color: var(--first-color);
   z-index: var(--z-fixed);
 }
@@ -372,26 +373,19 @@ a {
   height: auto;
 }
 
-.hero__buttons {
-  display: flex;
-  gap: 20px;
-}
-
-.hero__buttons button {
-  cursor: pointer;
-  font-size: var(--normal-font-size);
-  font-family: var(--body-font);
-  font-weight: var(--font-medium);
-  text-transform: uppercase;
-  padding: 10px 40px;
-  border-radius: 30px;
-}
-
-.hero__buttons button:first-child {
-  color: var(--background-color);
+.hero__button {
+  width: 200px;
   background-color: var(--second-color);
-  outline: none;
-  border: none;
+  color: var(--background-color);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  font-family: var(--body-font);
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
 }
 
 /* cards */
@@ -539,14 +533,12 @@ a {
   background-color: var(--first-color);
 }
 
-.explore__section-img {
-  max-width: 400px;
+.about__img {
   width: 100%;
-}
-
-.explore__section-img img {
-  width: 100%;
+  max-width: 370px; /* ou outro limite ideal para seu layout */
   height: auto;
+  display: block;
+  object-fit: contain; /* ou cover, se estiver dentro de uma div com altura definida */
 }
 
 /* pagina - sobre */
@@ -706,6 +698,7 @@ a {
 
 /* footer */
 .footer {
+  padding-bottom: calc(2rem + env(safe-area-inset-bottom));
   background-color: var(--first-color);
   color: var(--text-color);
   padding: 4rem 0 2rem;
@@ -900,6 +893,73 @@ a {
     padding-inline: 1rem;
     font-size: 0.8rem;
   }
+
+  /* pagina - sobre */
+  .about {
+    padding-block: 60px;
+    padding-bottom: 160px;
+  }
+
+  .about__title {
+    font-size: 30px;
+    padding-bottom: 1rem;
+  }
+
+  .about__description {
+    line-height: 1.6;
+  }
+
+  .about__img {
+    display: none;
+  }
+
+  /* pagina - contato */
+
+  .form__box {
+    padding-block: 2rem;
+  }
+
+  .form__text {
+    padding-inline: 1rem;
+  }
+
+  .form__text h2 {
+    font-size: 30px;
+  }
+
+  .form__input {
+    padding: 1.5rem 1rem;
+    border-radius: 30px;
+  }
+
+  .form__input form {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .form__box input,
+  .form__box select,
+  .form__box textarea {
+    width: 100% !important;
+  }
+
+  .form__input button {
+    max-width: 160px;
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .success__message {
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    bottom: 1rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.8rem;
+    text-align: center;
+  }
 }
 
 @media screen and (min-width: 734px) and (max-width: 991px) {
@@ -926,15 +986,12 @@ a {
     display: none;
   }
 
-  .hero__buttons {
+  .hero__button {
     flex-direction: column;
     gap: 1rem;
     align-items: center;
-  }
-
-  .hero__buttons button {
     width: 100%;
-    max-width: 250px;
+    max-width: 210px;
     padding: 12px 30px;
   }
 
@@ -1030,6 +1087,15 @@ a {
     font-size: 0.8rem;
     padding-inline: 1rem;
   }
+
+  /* pagina - sobre */
+  .about {
+    padding-block: 60px;
+    padding-bottom: 160px;
+  }
+  .about__img {
+    display: none;
+  }
 }
 
 /* para dispositivos grandes */
@@ -1095,10 +1161,12 @@ a {
   }
 
   .dropdown__content {
-    grid-template-columns: repeat(4, max-content);
-    column-gap: 6rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2rem;
     max-width: 1120px;
     margin-inline: auto;
+    padding-inline: 2rem;
   }
 
   .dropdown__group {
