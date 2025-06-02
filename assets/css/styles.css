@@ -44,7 +44,7 @@
 
 html,
 body {
-  overflow-x: hidden;
+  height: 100%;
 }
 html,
 body {
@@ -785,6 +785,208 @@ a {
   text-align: center;
   font-size: 0.85rem;
   color: var(--text-color);
+}
+
+/* informativo - prevenção ists */
+/* pagina teste rapido */
+
+.informativo__container {
+  padding-block: 3rem;
+}
+
+.informativo__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.informativo__title {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f1e6e6;
+}
+
+.informativo__title h1 {
+  font-size: 32px;
+  padding-inline: 1rem;
+}
+
+.informativo__elements {
+  display: flex;
+  padding-top: 3rem;
+  gap: 3rem;
+}
+
+.informativo__element {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+}
+
+.informativo__element a {
+  font-weight: var(--font-semi-bold);
+  color: var(--text-color);
+  background-color: var(--first-color);
+  padding: 13px 10px;
+  border-radius: 10px;
+  display: inline-block;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.informativo__element a:hover {
+  background-color: #badded;
+  transform: scale(1.02);
+}
+
+.informativo__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.informativos__options {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.informativos__options a {
+  color: var(--text-color);
+  font-weight: var(--font-medium);
+  transition: color 0.3s;
+}
+
+.informativos__options a:hover {
+  color: var(--hover-color);
+}
+
+/* locais de testes de ist */
+
+.locais__container {
+  padding-block: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.locais__container-title {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f1e6e6;
+}
+
+.ri-arrow-left-line {
+  font-size: 2rem;
+  color: #4e5176;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #bcd3e2;
+  width: 50px;
+  height: 50px;
+  border-radius: 60px;
+}
+
+.locais__title {
+  font-size: 32px;
+}
+
+.locais__subtitle {
+  margin-left: 0.2rem;
+  font-size: 18px;
+  font-weight: var(--font-medium);
+  color: #4e5176;
+}
+
+.locais__select {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f1e6e6;
+}
+
+.locais__select label {
+  font-size: 20px;
+  font-weight: var(--font-bold);
+}
+
+.locais__select select {
+  height: 48px;
+  border-radius: 10px;
+  padding-left: 0.5rem;
+  padding-right: 2.5rem;
+  border: 1px solid #ddaec2;
+  font-family: var(--body-font);
+  color: #4e5176;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--second-color);
+  box-shadow: 0 0 0 1px rgb(224, 182, 202);
+}
+
+.locais__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+}
+
+.locais__card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: var(--card-color);
+  border-radius: 15px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.locais__card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
+}
+
+.locais__card-title {
+  font-size: 20px;
+  font-weight: var(--font-bold);
+}
+
+.locais__card-description {
+  line-height: 1.6;
+  padding-bottom: 0.7rem;
+}
+
+.locais__card-description h4 {
+  font-weight: var(--font-semi-bold);
+  padding-bottom: 0.5rem;
+}
+
+.locais__card-description a {
+  color: #3688b3;
+  font-weight: var(--font-medium);
+  font-size: 15px;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* breakpoints */

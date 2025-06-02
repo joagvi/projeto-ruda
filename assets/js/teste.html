@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa de Testagem de ISTs</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 500px;
+        width: 100%;
+        margin-top: 1rem;
+        border-radius: 12px;
+      }
+
+      .filter-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .filter-buttons button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #e6007e;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .filter-buttons button:hover {
+        background-color: #c4006a;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center">Locais de Testagem de ISTs</h1>
+
+    <div class="filter-buttons" style="justify-content: center">
+      <button onclick="filtrarZona('todas')">Todas</button>
+      <button onclick="filtrarZona('norte')">Zona Norte</button>
+      <button onclick="filtrarZona('sul')">Zona Sul</button>
+      <button onclick="filtrarZona('leste')">Zona Leste</button>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      const map = L.map("map").setView([-3.101944, -60.025], 12);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Lista de marcadores com zona
+      const dadosUBS = [
+        {
+          nome: "UBS A - Zona Norte",
+          coords: [-3.05, -60.02],
+          zona: "norte",
+        },
+        {
+          nome: "UBS B - Zona Sul",
+          coords: [-3.12, -60.01],
+          zona: "sul",
+        },
+        {
+          nome: "UBS C - Zona Leste",
+          coords: [-3.09, -59.95],
+          zona: "leste",
+        },
+        {
+          nome: "UBS D - Zona Norte",
+          coords: [-3.06, -60.03],
+          zona: "norte",
+        },
+      ];
+
+      const marcadores = [];
+
+      dadosUBS.forEach((ubs) => {
+        const marker = L.marker(ubs.coords).bindPopup(`<strong>${ubs.nome}</strong>`);
+        marker.zona = ubs.zona;
+        marcadores.push(marker);
+        marker.addTo(map);
+      });
+
+      function filtrarZona(zonaSelecionada) {
+        marcadores.forEach((marker) => {
+          if (zonaSelecionada === "todas" || marker.zona === zonaSelecionada) {
+            marker.addTo(map);
+          } else {
+            map.removeLayer(marker);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

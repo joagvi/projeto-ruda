@@ -104,3 +104,19 @@ function initHeaderScripts() {
     });
   });
 }
+
+/* select bairros */
+const select = document.getElementById("bairroSelect");
+const cards = document.querySelectorAll(".locais__card");
+
+select.addEventListener("change", () => {
+  const bairro = select.value;
+
+  cards.forEach((card) => {
+    if (bairro === "todos" || card.dataset.bairro === bairro) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
