@@ -845,6 +845,13 @@ a {
   gap: 4rem;
 }
 
+.informativo__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 2000px;
+}
+
 .informativos__options {
   display: flex;
   flex-direction: column;
@@ -977,18 +984,6 @@ select:focus {
   font-weight: var(--font-medium);
   font-size: 15px;
 }
-
-.fade-up {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-up.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* breakpoints */
 /* para dispositivos pequenos */
 @media screen and (max-width: 733px) {
