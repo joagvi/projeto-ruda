@@ -45,6 +45,7 @@
 html,
 body {
   height: 100%;
+  scroll-behavior: smooth;
 }
 html,
 body {
@@ -1106,6 +1107,65 @@ select:focus {
   transition: color 0.3s;
 }
 
+.guia-h2 {
+  font-size: 22px;
+  font-weight: var(--font-bold);
+  margin-bottom: 0.5rem;
+}
+
+.guia-h3 {
+  font-size: 17px;
+  font-weight: var(--font-medium);
+  color: #4e5176;
+}
+
+.guia__container {
+  padding-block: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.guia__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.guia__card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: var(--card-color);
+  border-radius: 15px;
+}
+
+.li__description {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.guia__card-title {
+  font-size: 16.9px;
+  font-weight: var(--font-bold);
+  margin-bottom: 0.75rem;
+}
+
+.guia__card ul {
+  line-height: 1.7;
+}
+
+.guia__card span {
+  font-weight: var(--font-medium);
+}
+
+.guia__card a {
+  color: var(--hover-color);
+  font-weight: var(--font-medium);
+  text-decoration: none;
+  transition: color 0.3s;
+}
 /* breakpoints */
 /* para dispositivos pequenos */
 @media screen and (max-width: 733px) {
