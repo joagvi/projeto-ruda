@@ -513,6 +513,10 @@ a {
   gap: 0.5rem;
 }
 
+.explore__card-content a {
+  color: var(--text-color);
+}
+
 .explore__card-button {
   background-color: var(--second-color);
   border: none;
@@ -903,7 +907,6 @@ a {
 }
 
 .informativo__text span {
-  background-color: #ffd0e6;
   font-weight: var(--font-medium);
 }
 
