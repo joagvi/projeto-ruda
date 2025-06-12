@@ -103,6 +103,19 @@ function initHeaderScripts() {
       searchInput.classList.toggle("show-search");
     });
   });
+
+  const searchField = document.getElementById("searchInput");
+  if (searchField) {
+    searchField.addEventListener("keyup", (event) => {
+      // Executa busca a cada tecla
+      searchContent();
+
+      // Se for Enter, impede comportamento padrão
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    });
+  }
 }
 
 /* select bairros */
@@ -120,3 +133,14 @@ select.addEventListener("change", () => {
     }
   });
 });
+
+function searchContent() {
+  const input = document.getElementById("searchInput");
+  const searchTerm = input ? input.value.toLowerCase() : "";
+  const boxes = document.querySelectorAll(".info__box");
+
+  boxes.forEach((box) => {
+    const text = box.innerText.toLowerCase();
+    box.style.display = text.includes(searchTerm) ? "block" : "none";
+  });
+}

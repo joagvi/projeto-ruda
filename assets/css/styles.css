@@ -69,7 +69,7 @@ a {
 
 .container {
   max-width: 1120px;
-  margin-inline: 3rem;
+  margin-inline: 1.5rem;
 }
 
 /* header */
@@ -381,7 +381,7 @@ a {
 .hero__button {
   width: 200px;
   background-color: var(--second-color);
-  color: var(--background-color);
+  color: white;
   font-size: var(--small-font-size);
   font-weight: var(--font-medium);
   font-family: var(--body-font);
@@ -527,6 +527,7 @@ a {
   text-transform: uppercase;
   cursor: pointer;
   align-self: start;
+  font-size: 14px;
 }
 
 .explore__section-card:nth-of-type(2) .explore__card-line {
@@ -542,6 +543,9 @@ a {
   background-color: var(--first-color);
 }
 
+.explore__card-button a {
+  color: var(--text-color);
+}
 .about__img {
   width: 100%;
   max-width: 370px; /* ou outro limite ideal para seu layout */
@@ -1050,12 +1054,19 @@ select:focus {
   padding-bottom: 0.5rem;
 }
 
+.locais__card-description p {
+  padding-bottom: 0.5rem;
+}
+
 .locais__card-description a {
   font-weight: var(--font-medium);
   font-size: 15px;
+  color: #3688b3;
 }
 
 .list__box {
+  display: flex;
+  flex-direction: column;
   padding: 1.5rem;
   width: 100%;
 }
@@ -1236,6 +1247,36 @@ select:focus {
     text-align: center;
   }
 
+  .informativo__title h1 {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .informativo__container {
+    padding-top: 0.98rem;
+  }
+
+  .informativo__elements {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+  }
+
+  .informativo__element {
+    max-width: 390px;
+  }
+
+  .locais__container {
+    padding-top: 0.98rem;
+  }
+
+  .locais__title {
+    font-size: 25px;
+  }
+
+  .locais__subtitle {
+    font-size: 15px;
+  }
   /* footer */
 
   .footer__about {
@@ -1278,7 +1319,7 @@ select:focus {
 
   /* pagina - sobre */
   .about {
-    padding-block: 60px;
+    padding-top: 50px;
     padding-bottom: 160px;
   }
 
@@ -1426,6 +1467,14 @@ select:focus {
     display: none;
   }
 
+  .form__box {
+    padding-top: 50px;
+  }
+
+  .about {
+    padding-top: 50px;
+  }
+
   /* footer */
   .footer__content {
     flex-direction: column;
@@ -1477,6 +1526,36 @@ select:focus {
   }
   .about__img {
     display: none;
+  }
+
+  .informativo__title h1 {
+    text-align: center;
+  }
+
+  .informativo__container {
+    padding-top: 0.98rem;
+  }
+
+  .informativo__elements {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+  }
+
+  .informativo__element {
+    max-width: 390px;
+  }
+
+  .locais__container {
+    padding-top: 0.98rem;
+  }
+
+  .locais__title {
+    font-size: 25px;
+  }
+
+  .locais__subtitle {
+    font-size: 15px;
   }
 }
 
