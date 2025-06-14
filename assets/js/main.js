@@ -1,5 +1,11 @@
+import { setupFirestoreSearch } from "./firebase.js";
+
 document.addEventListener("DOMContentLoaded", () => {
-  includeHTML("header", "components/header.html", initHeaderScripts);
+  includeHTML("header", "components/header.html", () => {
+    initHeaderScripts(); // inicializa dropdowns, menus etc.
+    setupFirestoreSearch(); // inicializa a busca (precisa do input no DOM!)
+  });
+
   includeHTML("footer", "components/footer.html");
 });
 
@@ -7,10 +13,13 @@ function includeHTML(id, file, callback) {
   fetch(file)
     .then((res) => res.text())
     .then((data) => {
-      document.getElementById(id).innerHTML = data;
-      if (callback) callback();
+      const element = document.getElementById(id);
+      if (element) {
+        element.innerHTML = data;
+        if (callback) callback(); // só executa scripts depois que a header estiver no DOM
+      }
     })
-    .catch((err) => console.error("Erro ao carregar " + file + ":", err));
+    .catch((err) => console.error(`Erro ao carregar ${file}:`, err));
 }
 
 function initHeaderScripts() {
@@ -104,18 +113,7 @@ function initHeaderScripts() {
     });
   });
 
-  const searchField = document.getElementById("searchInput");
-  if (searchField) {
-    searchField.addEventListener("keyup", (event) => {
-      // Executa busca a cada tecla
-      searchContent();
-
-      // Se for Enter, impede comportamento padrão
-      if (event.key === "Enter") {
-        event.preventDefault();
-      }
-    });
-  }
+  setupFirestoreSearch();
 }
 
 /* select bairros */

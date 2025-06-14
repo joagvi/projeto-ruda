@@ -1,18 +1,23 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBo_HZaCGGub7MY6JGtJdqGGQCzAbacUFE",
-  authDomain: "projeto-ruda-8a04e.firebaseapp.com",
-  databaseURL: "https://projeto-ruda-8a04e-default-rtdb.firebaseio.com/",
-  projectId: "projeto-ruda-8a04e",
-  storageBucket: "projeto-ruda-8a04e.appspot.com",
-  messagingSenderId: "1048784578204",
-  appId: "1:1048784578204:web:6c26eb73e49959250eaf59",
+  apiKey: "AIzaSyA3vz0FMEFda_OzsBwt8_pzh1CpGVHGe8U",
+  authDomain: "projetoruda2.firebaseapp.com",
+  projectId: "projetoruda2",
+  storageBucket: "projetoruda2.appspot.com",
+  messagingSenderId: "637190763867",
+  appId: "1:637190763867:web:ac4bee08a5506b59af167e",
+  measurementId: "G-7LFHYWV2MJ",
+  databaseURL: "https://projetoruda2-default-rtdb.firebaseio.com",
 };
 
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 const database = getDatabase(app);
+const firestore = getFirestore(app);
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("form-contato");
@@ -30,7 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fields.forEach((field) => {
       field.style.borderColor = "#ddaec2";
-      if (!field.value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (field.type === "email" && !emailRegex.test(field.value)) {
         valid = false;
         field.style.borderColor = "#e57373";
       }
@@ -70,3 +76,47 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+
+export function setupFirestoreSearch() {
+  const input = document.getElementById("searchInput");
+  if (!input) return;
+
+  let resultBox = input.parentNode.querySelector(".search-results");
+  if (!resultBox) {
+    resultBox = document.createElement("div");
+    resultBox.classList.add("search-results");
+    const content = document.createElement("div");
+    content.classList.add("search-results__content");
+    resultBox.appendChild(content);
+    input.parentNode.appendChild(resultBox);
+  }
+
+  getDocs(collection(firestore, "conteudos"))
+    .then((snapshot) => {
+      const items = snapshot.docs.map((doc) => doc.data());
+
+      input.addEventListener("input", () => {
+        const query = input.value.toLowerCase().trim();
+        resultBox.innerHTML = "";
+
+        if (!query) return;
+
+        const results = items.filter((item) => item.keywords?.some((k) => k.toLowerCase().includes(query)));
+
+        if (results.length === 0) {
+          resultBox.innerHTML = "<p>Nenhum resultado encontrado</p>";
+          return;
+        }
+
+        results.forEach((result) => {
+          const link = document.createElement("a");
+          link.href = result.url;
+          link.textContent = result.title;
+          resultBox.appendChild(link);
+        });
+      });
+    })
+    .catch((err) => {
+      console.error("Erro ao carregar dados de busca:", err);
+    });
+}
